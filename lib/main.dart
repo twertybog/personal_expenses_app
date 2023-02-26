@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
-import 'transaction.dart';
+import 'package:personal_expenses_app/widgets/user_transaction.dart';
 
 void main() => runApp(const MyApp());
 
@@ -18,66 +16,31 @@ class MyApp extends StatelessWidget {
 }
 
 class _MyHomePage extends StatelessWidget {
-  final List<Transaction> transaction = [
-    Transaction("t1", "New shoes", 69.99, DateTime.now()),
-    Transaction("t2", "Gym", 13.65, DateTime.now())
-  ];
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Expenses'),
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            const Card(
-              elevation: 5,
-              child: SizedBox(
-                width: double.infinity,
-                child: Text(
-                  "CHART!",
-                ),
+      appBar: AppBar(
+        title: const Text('Expenses'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          const Card(
+            elevation: 5,
+            child: SizedBox(
+              width: double.infinity,
+              child: Text(
+                "CHART!",
               ),
             ),
-            Column(
-              children: transaction.map((tx) {
-                return Card(
-                    child: Row(
-                  children: <Widget>[
-                    Container(
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 15),
-                        decoration: BoxDecoration(
-                            border:
-                                Border.all(color: Colors.blueAccent, width: 2)),
-                        padding: const EdgeInsets.all(10),
-                        child: Text(
-                          "\$${tx.amount}",
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                              color: Colors.blueAccent),
-                        )),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(tx.title,
-                            style: const TextStyle(
-                                fontSize: 17, fontWeight: FontWeight.bold)),
-                        Text(
-                          DateFormat().format(tx.date),
-                          style: const TextStyle(color: Colors.blueGrey),
-                        )
-                      ],
-                    )
-                  ],
-                ));
-              }).toList(),
-            )
-          ],
-        ));
+          ),
+          UserTransaction(),
+        ],
+      ),
+    );
   }
 }
