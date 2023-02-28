@@ -28,36 +28,24 @@ class TransactionList extends StatelessWidget {
           : ListView.builder(
               itemBuilder: (ctx, index) {
                 return Card(
-                    child: Row(
-                  children: <Widget>[
-                    Container(
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 15),
-                        decoration: BoxDecoration(
-                            border:
-                                Border.all(color: Colors.blueAccent, width: 2)),
-                        padding: const EdgeInsets.all(10),
-                        child: Text(
-                          "\$${transactions[index].amount.toStringAsFixed(2)}",
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                              color: Colors.blueAccent),
-                        )),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(transactions[index].title,
-                            style: const TextStyle(
-                                fontSize: 17, fontWeight: FontWeight.bold)),
-                        Text(
-                          DateFormat().format(transactions[index].date),
-                          style: const TextStyle(color: Colors.blueGrey),
-                        )
-                      ],
-                    )
-                  ],
-                ));
+                    margin:
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        radius: 30,
+                        child: Padding(
+                          padding: const EdgeInsets.all(6),
+                          child: FittedBox(
+                              child: Text('\$${transactions[index].amount}')),
+                        ),
+                      ),
+                      title: Text(
+                        transactions[index].title,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      subtitle:
+                          Text(DateFormat().format(transactions[index].date)),
+                    ));
               },
               itemCount: transactions.length,
             ),
