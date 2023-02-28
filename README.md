@@ -1,16 +1,12 @@
-# personal_expenses_app
+# Personal Expenses App
 
-A new Flutter project.
+### It's an app which can help you monitor your expesense per week with useful bar.
 
-## Getting Started
+<image src='assets/images/bar.png' width="500">
 
-This project is a starting point for a Flutter application.
+### You can add, delete, pick a different date in it
+<image src='assets/images/presenting.gif' width="200">
 
-A few resources to get you started if this is your first Flutter project:
+## ToDo:
+- ### add saving
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

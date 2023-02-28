@@ -39,8 +39,14 @@ class _MyHomePageState extends State<_MyHomePage> {
 
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((tx) {
-      return tx.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
+      return tx.date.isAfter(DateTime.now().subtract(const Duration(days: 7)));
     }).toList();
+  }
+
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((tx) => tx.id == id);
+    });
   }
 
   void _addNewTransaction(
@@ -75,16 +81,16 @@ class _MyHomePageState extends State<_MyHomePage> {
               icon: const Icon(Icons.add))
         ],
       ),
-      body: ListView(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Chart(_recentTransactions),
-              TransactionList(_userTransactions),
-            ],
-          )
+          Chart(_recentTransactions),
+          Flexible(
+              child: SizedBox(
+                  height: 2000,
+                  child:
+                      TransactionList(_userTransactions, _deleteTransaction))),
         ],
       ),
       floatingActionButton: FloatingActionButton(
