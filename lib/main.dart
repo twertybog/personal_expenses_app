@@ -4,6 +4,7 @@ import 'package:personal_expenses_app/widgets/transaction_list.dart';
 import 'models/transaction.dart';
 import 'widgets/new_transaction.dart';
 import 'widgets/chart.dart';
+import 'native.dart';
 
 void main() => runApp(const MyApp());
 
@@ -74,7 +75,16 @@ class _MyHomePageState extends State<_MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Expenses'),
+        title: Container(
+            child: FutureBuilder(
+          future: api.appBarName(),
+          builder: (context, data) {
+            if (data.hasData) {
+              return Text(data.data!);
+            }
+            return const Text("Non Rust TEXT!");
+          },
+        )),
         actions: <Widget>[
           IconButton(
               onPressed: () => _startAddNewTransaction(context),
